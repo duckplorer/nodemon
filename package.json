@@ -45,6 +45,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/node": "^25.5.0",
     "async": "1.4.2",
     "coffee-script": "~1.7.1",
     "eslint": "^7.32.0",
@@ -53,7 +54,8 @@
     "nyc": "^15.1.0",
     "proxyquire": "^1.8.0",
     "semantic-release": "^25.0.0",
-    "should": "~4.0.0"
+    "should": "~4.0.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "chokidar": "^3.5.2",
