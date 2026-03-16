@@ -9,6 +9,7 @@
                              each directory or file to watch.
   -i, --ignore ............. ignore specific files or directories.
   -V, --verbose ............ show detail on what is causing restarts.
+  --json ................... output structured JSON lines for machine parsing.
   -- <your args> ........... to tell nodemon stop slurping arguments.
 
   Note: if the script is omitted, nodemon will try to read "main" from
