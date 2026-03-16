@@ -300,4 +300,4 @@ function parseDelay(value: string): number {
 }
 
 export default parse;
-export { EatNextFn };
+export type { EatNextFn };
