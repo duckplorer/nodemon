@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "lib": ["ES2018"],
+    "strict": true,
+    "esModuleInterop": false,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["lib/utils/index.ts", "lib/utils/log.ts"],
+  "exclude": ["node_modules"]
+}
