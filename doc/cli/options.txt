@@ -5,6 +5,8 @@ Configuration
   -i, --ignore ............. ignore specific files or directories
   --no-colors .............. disable color output
   --signal <signal> ........ use specified kill signal instead of default (ex. SIGTERM)
+  -K, --kill-timeout <ms> .. milliseconds to wait before force-killing the child
+                             process with SIGKILL after the graceful signal is sent
   -w, --watch path ......... watch directory "dir" or files. use once for each
                              directory or file to watch
   --no-update-notifier ..... opt-out of update version check
