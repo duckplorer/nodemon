@@ -119,4 +119,22 @@ Object.defineProperty(Logger.prototype, 'useColours', {
   },
 });
 
+// Re-export types via namespace merging for use by other modules
+namespace Logger {
+  export type Type = LogType;
+  export type Event = LogEvent;
+  export interface Instance {
+    log(text: string): void;
+    info(text: string): void;
+    status(text: string): void;
+    detail(text: string): void;
+    fail(text: string): void;
+    error(text: string): void;
+    required(val: boolean): void;
+    _log(type: LogType, msg?: string): void;
+    debug: boolean;
+    useColours: boolean;
+  }
+}
+
 export = Logger;

@@ -6,6 +6,14 @@ import merge = require('./merge');
 import bus = require('./bus');
 import Logger = require('./log');
 
+/**
+ * Extended Logger.Instance with index signature to support dynamic property
+ * iteration in quiet() and reset() methods.
+ */
+interface ILoggerWithIndex extends Logger.Instance {
+  [key: string]: unknown;
+}
+
 const noop = function (): void {};
 
 const version: string[] = process.versions.node.split('.') || [null as unknown as string, null as unknown as string, null as unknown as string];
@@ -15,24 +23,6 @@ interface NodeVersion {
   major: number;
   minor: number;
   patch: number;
-}
-
-/** Log method names that can be replaced with noop or restored */
-type LogMethodName = 'log' | 'info' | 'status' | 'detail' | 'fail' | 'error' | '_log';
-
-/** The Logger instance type returned by the Logger constructor */
-interface ILogger {
-  log(text: string): void;
-  info(text: string): void;
-  status(text: string): void;
-  detail(text: string): void;
-  fail(text: string): void;
-  error(text: string): void;
-  required(val: boolean): void;
-  _log(type: string, msg?: string): void;
-  debug: boolean;
-  useColours: boolean;
-  [key: string]: unknown;
 }
 
 /** The main utils object interface */
@@ -53,7 +43,7 @@ interface Utils {
   reset(): void;
   regexpToText(t: string): string;
   stringify(exec: string, args?: string[]): string;
-  log: ILogger;
+  log: Logger.Instance;
   debug: boolean;
   colours: boolean;
 }
@@ -92,20 +82,20 @@ const utils: Utils = {
   quiet: function (this: Utils): void {
     // nukes the logging
     if (!this.debug) {
-      const log = utils.log as ILogger;
+      const log = utils.log as ILoggerWithIndex;
       for (const method in log) {
         if (typeof log[method] === 'function') {
-          (log as Record<string, unknown>)[method] = noop;
+          log[method] = noop;
         }
       }
     }
   },
   reset: function (this: Utils): void {
     if (!this.debug) {
-      const log = utils.log as ILogger;
+      const log = utils.log as ILoggerWithIndex;
       for (const method in log) {
         if (typeof log[method] === 'function') {
-          delete (log as Record<string, unknown>)[method];
+          delete log[method];
         }
       }
     }
@@ -139,7 +129,7 @@ const utils: Utils = {
   },
 } as Utils;
 
-utils.log = Logger(utils.isRequired) as unknown as ILogger;
+utils.log = Logger(utils.isRequired) as unknown as Logger.Instance;
 
 Object.defineProperty(utils, 'debug', {
   set: function (this: Utils, value: boolean): void {
