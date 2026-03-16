@@ -96,6 +96,7 @@ export interface NodemonConfig {
   /** @deprecated as this is "on" by default */
   js?: boolean;
   quiet?: boolean;
+  json?: boolean;
   configFile?: string;
   exitCrash?: boolean;
   execOptions?: NodemonExecOptions;

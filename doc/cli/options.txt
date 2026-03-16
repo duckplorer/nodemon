@@ -28,6 +28,7 @@ Information
   --dump ................... print full debug configuration
   -h, --help ............... default help
   --help <topic> ........... help on a specific feature. Try "--help topics"
+  --json ................... output structured JSON lines for machine parsing
   -q, --quiet .............. minimise nodemon messages to start/stop only
   -v, --version ............ current nodemon version
   -V, --verbose ............ show detail on what is causing restarts
