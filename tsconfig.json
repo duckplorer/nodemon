@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "lib": ["ES2018"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "checkJs": false,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "declaration": true,
+    "typeRoots": ["./node_modules/@types", "./typings"]
+  },
+  "include": ["lib/**/*.ts", "lib/**/*.d.ts", "typings/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "website"]
+}
