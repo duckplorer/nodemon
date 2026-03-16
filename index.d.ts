@@ -81,6 +81,8 @@ export interface NodemonConfig {
   runOnChangeOnly?: boolean;
   verbose?: boolean;
   signal?: string;
+  /** Milliseconds to wait before force-killing the child process with SIGKILL after the graceful signal is sent */
+  killTimeout?: number;
   stdout?: boolean;
   watchOptions?: WatchOptions;
   help?: string;
