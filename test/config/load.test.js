@@ -297,7 +297,8 @@ describe('config load', function () {
       {},
       {},
       function (config) {
-        assert.equal(config.ignore.length, defaults.ignoreRoot.length + 2);
+        // ignoreRoot defaults + 2 CLI ignore + 2 config file ignore ('one', 'three')
+        assert.equal(config.ignore.length, defaults.ignoreRoot.length + 4);
         done();
       }
     );
@@ -312,7 +313,8 @@ describe('config load', function () {
       {},
       {},
       function (config) {
-        assert.equal(config.ignore.length, 3);
+        // ignoreRoot '.git' + 2 CLI ignore + 2 config file ignore ('one', 'three')
+        assert.equal(config.ignore.length, 5);
         done();
       }
     );
@@ -326,7 +328,8 @@ describe('config load', function () {
       {},
       {},
       function (config) {
-        assert.equal(config.ignore.length, defaults.ignoreRoot.length + 1);
+        // ignoreRoot defaults + 1 CLI ignore + 2 config file ignore ('one', 'three')
+        assert.equal(config.ignore.length, defaults.ignoreRoot.length + 3);
         done();
       }
     );
@@ -341,7 +344,8 @@ describe('config load', function () {
       {},
       {},
       function (config) {
-        assert.equal(config.ignore.length, 1);
+        // empty ignoreRoot + 1 CLI ignore + 2 config file ignore ('one', 'three')
+        assert.equal(config.ignore.length, 3);
         done();
       }
     );
