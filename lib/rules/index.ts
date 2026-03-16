@@ -69,7 +69,7 @@ function load(filename: string, callback: LoadCallback): void {
     if (err) {
       // we should have bombed already, but
       utils.log.error(err);
-      callback(err);
+      return callback(err);
     }
 
     if (result.raw) {
