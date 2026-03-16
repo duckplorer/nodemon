@@ -173,7 +173,7 @@ Nodemon also supports unix globbing, e.g `--watch './lib/*'`. The globbing patte
 
 ## Specifying extension watch list
 
-By default, nodemon looks for files with the `.js`, `.mjs`, `.coffee`, `.litcoffee`, and `.json` extensions. If you use the `--exec` option and monitor `app.py` nodemon will monitor files with the extension of `.py`. However, you can specify your own list with the `-e` (or `--ext`) switch like so:
+By default, nodemon looks for files with the `.js`, `.mjs`, `.cjs`, `.coffee`, `.litcoffee`, and `.json` extensions. If you use the `--exec` option and monitor `app.py` nodemon will monitor files with the extension of `.py`. However, you can specify your own list with the `-e` (or `--ext`) switch like so:
 
 ```bash
 nodemon -e js,pug
@@ -183,7 +183,7 @@ Now nodemon will restart on any changes to files in the directory (or subdirecto
 
 ## Ignoring files
 
-By default, nodemon will only restart when a `.js` JavaScript file changes. In some cases you will want to ignore some specific files, directories or file patterns, to prevent nodemon from prematurely restarting your application.
+By default, nodemon will only restart when a `.js`, `.mjs`, or `.cjs` JavaScript file changes. In some cases you will want to ignore some specific files, directories or file patterns, to prevent nodemon from prematurely restarting your application.
 
 This can be done via the command line:
 
