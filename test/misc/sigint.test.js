@@ -4,6 +4,7 @@ var utils = require('../utils'),
     assert = require('assert'),
     path = require('path'),
     appjs = path.relative(process.cwd(), path.resolve(__dirname, '..', 'fixtures', 'sigint.js')),
+    sigtermjs = path.relative(process.cwd(), path.resolve(__dirname, '..', 'fixtures', 'sigterm.js')),
     match = utils.match,
     cleanup = utils.cleanup,
     run = utils.run,
@@ -50,6 +51,36 @@ describe('terminal signals', function () {
     runAndKill(done, appjs + ' --dont-exit', function (childPID) {
       // make sure we don't keep abandoned child
       process.kill(childPID, 'SIGTERM');
+      done();
+    });
+  });
+
+  it('should forward SIGTERM to child', function (done) {
+    var childPID = null;
+
+    var p = run(sigtermjs, {
+      output: function (data) {
+        if (match(data, 'pid: ')) {
+          data.replace(/pid: (\d+)/, function (_, p1) {
+            childPID = p1;
+          });
+        }
+      },
+      error: function (data) {
+        assert(false, 'nodemon failed with ' + data);
+        cleanup(p, done);
+      }
+    });
+
+    p.on('message', function (event) {
+      if (event.type === 'start') {
+        setTimeout(function () {
+          p.kill('SIGTERM');
+        }, 1000);
+      }
+    }).on('exit', function () {
+      assert(childPID, 'child PID should have been captured');
+      assert(!isRunning(childPID), 'child should not be running after SIGTERM');
       done();
     });
   });
